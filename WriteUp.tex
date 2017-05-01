@@ -19,6 +19,7 @@ Our team found this data set particularly interesting due to its possible applic
 
 \section*{II. Data Preprocessing}
  	The data was split up into the 561 given features and the given activity labels for each feature. The labels for this data set are categorical and contain 6 possible types of activities, including walking, walking upstairs, walking downstairs, sitting, standing, and laying. 
+ 	
    \newline \newline To convert this data into a form usable for our classifiers, we mapped each of the activities into a class number 1-6. We did so by first converting the 6 different classes into one-hot vectors, and then took the argmax of each vector to get the numerical class label. Then these labels were used for the Logistic Regression and SVM models.
    
 \section*{III. Data Modeling}
@@ -31,9 +32,7 @@ The aspect of the model which underwent the largest amount of tuning was the sel
 
 As for the other activation functions, alternating ReLU and hyperbolic tangent activations proved to be the most successful. Using other activation functions resulted in problems such as the model learning extremely slowly. Additionally, using exclusively ReLU or exclusively hyperbolic tangent activations resulted in the model becoming stuck below 20% accuracy and never improving. Exclusively using softmax actiation was similar, with peak accuracy of 18.22%.
 
-Model optimizers did not prove to have a significant effect on the performance of the model. The most successful optimizers were stochastic gradient descent (SGD) and Adam. Adam performed slightly better than SGD but the difference was marginal, no larger than 1 or 2 percent in general.
-
-The final peak accuracy of the neural network was 95.66%.
+Model optimizers did not prove to have a significant effect on the performance of the model. The most successful optimizers were stochastic gradient descent (SGD) and Adam. Adam performed slightly better than SGD but the difference was marginal, no larger than 1 or 2 percent in general. The model ultimately resulted in 95.66% accuracy. 
 
 \subsection*{Logistic Regression}
 For the logistic regression model, we used the LogisticRegression model from scikit learn with 6 classes. The default L2 penalty was used, which is computationally faster than L1 and gives a dense output. No other hyperparameters were tuned. This basic logistic regression model resulted in 96.1\% accuracy, which implies that the data is very linearly separable.
@@ -42,6 +41,8 @@ For the logistic regression model, we used the LogisticRegression model from sci
 From the logistic regression model, we learned that the data seems to be linearly separable, so when applying the SVM model, we chose to use a linear SVM despite having the option to use a nonlinear model. We used the SVM model from scikit learn with the probability option set to True. This enables estimates to be predicted using probability. By default the scikit learn SVM used the one-vs-one method when dealing with the multiple class labels. This resulted in a 96.4\% accuracy.
 \section*{IV. Comparison of Models}
 \section*{V. Discussion of Results}
+The neural network resulted in a 95.66% accuracy, slightly lower than was expected. One possible reason for this is that when applying a feedforward neural network to time series data, an underlying trend in the data may exist which has a significant effect on the ability of the neural network to make predictions.
+
 \section*{VI. Conclusion}
 
 

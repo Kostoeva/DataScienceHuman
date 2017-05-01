@@ -23,6 +23,26 @@ Our team found this data set particularly interesting due to its possible applic
    \newline \newline To convert this data into a form usable for our classifiers, we mapped each of the activities into a class number 1-6. We did so by first converting the 6 different classes into one-hot vectors, and then took the argmax of each vector to get the numerical class label. Then these labels were used for the Logistic Regression, SVM, and feedforward neural network models.
    
 \section*{III. Data Modeling}
+
+\subsection*{K Nearest Neighbors}
+K Nearest Neighbors is an algorithm that classifies data based on a similarity measure. We believed that this would be a good starting point for classifying our data into the 6 categories. The algorithm works by assigning data to a class the data point is nearest to, hence the name 'nearest neighbors'. 
+
+We used the 'KNeighborsClassifier' model from scikit learn, passing in the following arguments:
+
+\documentclass[twocolumn]{article}
+\usepackage{blindtext}
+\usepackage{scrextend}
+\addtokomafont{labelinglabel}{\sffamily}
+\begin{document}
+\blindtext
+\begin{labeling}{alligator}
+\item [n_neighbors] = 6, to reflect the six different categories that the data will be classified into
+\item [algorithm] = 'kd_tree' which reduces the required number of distance calculations by encoding aggregate distance information for the sample
+\end{labeling}
+\end{document}
+
+The model yielded a 90.2\% accuracy.
+
 \subsection*{Feedforward Neural Network}
 One model which was applied to this problem was a simple feedforward neural network model. The Keras implementation was used due to its simplicity and ease of use and configuration.
 
@@ -33,6 +53,7 @@ The aspect of the model which underwent the largest amount of tuning was the sel
 As for the other activation functions, alternating ReLU and hyperbolic tangent activations proved to be the most successful. Using other activation functions resulted in problems such as the model learning extremely slowly. Additionally, using exclusively ReLU or exclusively hyperbolic tangent activations resulted in the model becoming stuck below 20\% accuracy and never improving. Exclusively using softmax actiation was similar, with peak accuracy of 18.22\%.
 
 Model optimizers did not prove to have a significant effect on the performance of the model. The most successful optimizers were stochastic gradient descent (SGD) and Adam. Adam performed slightly better than SGD but the difference was marginal, no larger than 1 or 2 percent in general. The model ultimately resulted in 95.66\% accuracy. 
+
 
 \subsection*{Logistic Regression}
 For the logistic regression model, we used the LogisticRegression model from scikit learn with 6 classes. The default L2 penalty was used, which is computationally faster than L1 and gives a dense output. No other hyperparameters were tuned. This basic logistic regression model resulted in 96.1\% accuracy, which implies that the data is very linearly separable.

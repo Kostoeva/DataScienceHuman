@@ -22,6 +22,19 @@ Our team found this data set particularly interesting due to its possible applic
    \newline \newline To convert this data into a form usable for our classifiers, we mapped each of the activities into a class number 1-6. We did so by first converting the 6 different classes into one-hot vectors, and then took the argmax of each vector to get the numerical class label. Then these labels were used for the Logistic Regression and SVM models.
    
 \section*{III. Data Modeling}
+\subsection*{Feedforward Neural Network}
+One model which was applied to this problem was a simple feedforward neural network model. The Keras implementation was used due to its simplicity and ease of use and configuration.
+
+The parameters of the model underwent a large amount of tuning: ultimately it was found that the model performed best when the model had 10 layers or fewer; the final model had 7. These layers were all densely connected layers with an input layer size of 64 neurons and an output size of 6 neurons. The size of the hidden layers was tuned many times. In general the optimal size appeared to be a number of neurons between the input layer and the output layer. The final model used densely connected hidden layers of size 32, however there was minimal difference observed between hidden layers of other sizes, so long as they were within the bounds of the input and the output.
+
+The aspect of the model which underwent the largest amount of tuning was the selection of the activation functions. The optimization of these functions was largely conducted through trial and error, although some examination of previous papers discussing this classification problem suggested some possible solutions. The most successful configuration proved to be layers with alternating ReLU and hyperbolic tangent activation functions ending with a softmax activation function. The inclusion of the softmax function proved to be critical: without a terminating softmax activation function, the model would virtually never proceed past approximately 20% accuracy. However, multiple softmax functions spread throughout the hidden layers resulted in a model which improved much more slowly across its iterations. Placing the softmax activation near the input layer of the model demonstrated a similar effect. As a result the final model included a single softmax activation at the output layer.
+
+As for the other activation functions, alternating ReLU and hyperbolic tangent activations proved to be the most successful. Using other activation functions resulted in problems such as the model learning extremely slowly. Additionally, using exclusively ReLU or exclusively hyperbolic tangent activations resulted in the model becoming stuck below 20% accuracy and never improving. Exclusively using softmax actiation was similar, with peak accuracy of 18.22%.
+
+Model optimizers did not prove to have a significant effect on the performance of the model. The most successful optimizers were stochastic gradient descent (SGD) and Adam. Adam performed slightly better than SGD but the difference was marginal, no larger than 1 or 2 percent in general.
+
+The final peak accuracy of the neural network was 95.66%.
+
 \subsection*{Logistic Regression}
 For the logistic regression model, we used the LogisticRegression model from scikit learn with 6 classes. The default L2 penalty was used, which is computationally faster than L1 and gives a dense output. No other hyperparameters were tuned. This basic logistic regression model resulted in 96.1\% accuracy, which implies that the data is very linearly separable.
 

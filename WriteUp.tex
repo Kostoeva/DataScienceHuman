@@ -20,7 +20,7 @@ Our team found this data set particularly interesting due to its possible applic
 \section*{II. Data Preprocessing}
  	The data was split up into the 561 given features and the given activity labels for each feature. The labels for this data set are categorical and contain 6 possible types of activities, including walking, walking upstairs, walking downstairs, sitting, standing, and laying. 
  	
-   \newline \newline To convert this data into a form usable for our classifiers, we mapped each of the activities into a class number 1-6. We did so by first converting the 6 different classes into one-hot vectors, and then took the argmax of each vector to get the numerical class label. Then these labels were used for the Logistic Regression and SVM models.
+   \newline \newline To convert this data into a form usable for our classifiers, we mapped each of the activities into a class number 1-6. We did so by first converting the 6 different classes into one-hot vectors, and then took the argmax of each vector to get the numerical class label. Then these labels were used for the Logistic Regression, SVM, and feedforward neural network models.
    
 \section*{III. Data Modeling}
 \subsection*{Feedforward Neural Network}
@@ -41,7 +41,7 @@ For the logistic regression model, we used the LogisticRegression model from sci
 From the logistic regression model, we learned that the data seems to be linearly separable, so when applying the SVM model, we chose to use a linear SVM despite having the option to use a nonlinear model. We used the SVM model from scikit learn with the probability option set to True. This enables estimates to be predicted using probability. By default the scikit learn SVM used the one-vs-one method when dealing with the multiple class labels. This resulted in a 96.4\% accuracy.
 \section*{IV. Comparison of Models}
 \section*{V. Discussion of Results}
-The neural network resulted in a 95.66\% accuracy, slightly lower than was expected. One possible reason for this is that when applying a feedforward neural network to time series data, an underlying trend in the data may exist which has a significant effect on the ability of the neural network to make predictions.
+The neural network resulted in a 95.66\% accuracy, slightly lower than was expected. One possible reason for this is that when applying a feedforward neural network to time series data, an underlying trend in the data may exist which has a significant effect on the ability of the neural network to make predictions. Additionally, no tuning of the parameters of each individual optimizer was done. It is possible that changing the default values of these parameters could have yielded better accuracy. 
 
 \section*{VI. Conclusion}
 

@@ -1,0 +1,37 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage[latin1]{inputenc}
+
+\title{The Life of a Data Scientist}
+\date{\today}
+\author{Revekka Kostoeva, Nikita Vemuri, Kevin Qi,Nate Young, \\Yonatan Nozik}
+\begin{document}
+\maketitle
+
+\section*{I. Introduction}
+The Human Activity Recognition database was built from the recordings of 30 study participants performing activities of daily living (ADL) while carrying a waist-mounted smartphone with-mounted smartphone with embedded inertial sensors. The objective was to classify activities into one of the six activities performed: walking, walking upstairs, walking downstairs, sitting, standing, and laying down. The data set was gathered from a group of 30 volunteers, within the age bracket of 19-48 years of age. The obtained dataset has been randomly partitioned into two sets, where 70\% of the volunteers was selected for generating the training data and 30% the test data. 
+
+Using Samsung Galaxy S II embedded accelerometer and gyroscope, data that was captured included 3-axial linear acceleration and 3-axial angular velocity at a constant rate of 50Hz. The sensor signals (accelerometer and gyroscope) were pre-processed by applying noise filters. The sensor acceleration signal, which has gravitational and body motion components, was separated using a Butterworth low-pass filter into body acceleration and gravity. The gravitational force is assumed to have only low frequency components, therefore a filter with 0.3 Hz cutoff frequency was used. From each window, a vector of features was obtained by calculating variables from the time and frequency domain.
+
+Our team found this data set particularly interesting due to its possible applications in design of wearable technology, particularly with a focus on the medical realm. By designing an accurate model which could predict whether the readings gathered from a smartwatch were from a walking or a sitting activity, new applications are inevitable. For example, patients suffering from high blood pressure could be easily monitored by their doctors, without the blood pressure data being made vague from lack of activity information. With our model, a doctor could easily dispose of any data not recorded while the patient was sitting, and thus have a data set gathered from a single activity throughout the day from which the doctor could monitor the patient's blood pressure levels.
+
+\section*{II. Data Preprocessing}
+ 	The data was split up into the 561 given features and the given activity labels for each feature. The labels for this data set are categorical and contain 6 possible types of activities, including walking, walking upstairs, walking downstairs, sitting, standing, and laying. 
+   \newline \newline To convert this data into a form usable for our classifiers, we mapped each of the activities into a class number 1-6. We did so by first converting the 6 different classes into one-hot vectors, and then took the argmax of each vector to get the numerical class label. Then these labels were used for the Logistic Regression and SVM models.
+   
+\section*{III. Data Modeling}
+\subsection*{Logistic Regression}
+For the logistic regression model, we used the LogisticRegression model from scikit learn with 6 classes. The default L2 penalty was used, which is computationally faster than L1 and gives a dense output. No other hyperparameters were tuned. This basic logistic regression model resulted in 96.1\% accuracy, which implies that the data is very linearly separable.
+
+\subsection*{SVM}
+From the logistic regression model, we learned that the data seems to be linearly separable, so when applying the SVM model, we chose to use a linear SVM despite having the option to use a nonlinear model. We used the SVM model from scikit learn with the probability option set to True. This enables estimates to be predicted using probability. By default the scikit learn SVM used the one-vs-one method when dealing with the multiple class labels. This resulted in a 96.4\% accuracy.
+\section*{IV. Comparison of Models}
+\section*{V. Discussion of Results}
+\section*{VI. Conclusion}
+
+
+
+
+\end{document}

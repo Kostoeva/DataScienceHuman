@@ -41,7 +41,7 @@ We used the 'KNeighborsClassifier' model from scikit learn, passing in the follo
 \end{labeling}
 \end{document}
 
-The model yielded a 90.2\% accuracy.
+The model yielded a 90.2\% accuracy. The confusion matrix shows that the model classified walking data with a 100\% accuracy. There was some confusion between walking upstair and downstairs data points. Data points associated with sitting down were classified at a 98\% accuracy, with the 2\% confusion being spread out between 'Standing' and 'Laying Down' categories. The model was least accurate at \78% in classfying data gathered from standing, mostly confusing with the 'Sitting' and 'Laying Down' categories whose data points were most likely too similar for the model to accurately call. This stems from the notion that sitting, standing, and laying down are all stationary activities as oppossed to walking upstairs, downstairs, and generally, where walking and the direction of the walk could be easily determined with gyroscope data. 
 
 \subsection*{Feedforward Neural Network}
 One model which was applied to this problem was a simple feedforward neural network model. The Keras implementation was used due to its simplicity and ease of use and configuration.
